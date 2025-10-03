@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "index"; // this maps to index.html in /templates
+        return "index"; // This tells Spring to render src/main/resources/templates/index.html
     }
 }
