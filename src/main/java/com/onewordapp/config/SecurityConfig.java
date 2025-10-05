@@ -13,21 +13,14 @@ public class SecurityConfig {
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 http
-                                // CSRF is enabled by default in Spring Security 6
-                                .csrf(csrf -> {
-                                }) // ✅ Enable CSRF for production
+                                .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/", "/register", "/login", "/css/**", "/js/**")
-                                                .permitAll() // ✅ Public pages
-                                                .requestMatchers("/post-word").authenticated() // ✅ Posting requires
-                                                                                               // login
+                                                .requestMatchers("/register", "/css/**", "/js/**").permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
                                                 .loginPage("/login")
-                                                .defaultSuccessUrl("/post-word", true) // ✅ Redirect after login
                                                 .permitAll())
                                 .logout(logout -> logout
-                                                .logoutSuccessUrl("/") // ✅ Redirect to home after logout
                                                 .permitAll());
                 return http.build();
         }
