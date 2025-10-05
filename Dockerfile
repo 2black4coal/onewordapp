@@ -1,19 +1,20 @@
-# Stage 1: Build the JAR
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+# Use official OpenJDK image
+FROM openjdk:17-jdk-slim
+
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy Maven wrapper and project files
-COPY pom.xml ./
-COPY src ./src
+# Copy the Maven wrapper and project files
+COPY . .
 
-# Make sure wrapper script is executable and build JAR
-RUN chmod +x ./mvnw || true
-RUN mvn clean package -DskipTests
+# Grant execute permission to mvnw
+RUN chmod +x mvnw
 
-# Stage 2: Run the JAR
-FROM eclipse-temurin:17-jdk-alpine
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+# Build the JAR file without running tests
+RUN ./mvnw clean package -DskipTests
 
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Expose the port your Spring Boot app runs on
+EXPOSE 8081
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "target/onewordapp-0.0.1-SNAPSHOT.jar"]
