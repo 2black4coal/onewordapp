@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OneWord | Home</title>
+<style>
+/* ---------- Body & Background ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #0077b6, #00b4d8); /* ocean blue gradient */
+  color: #fff;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ---------- Super Engraved Heading ---------- */
+h1 {
+  font-size: 4em;
+  font-family: 'Pacifico', 'Georgia', serif; /* curvy readable */
+  font-style: italic;
+  letter-spacing: 2px;
+  color: #f7f1e3; /* creamy engraved color */
+  text-shadow: 
+    3px 3px 5px rgba(0,0,0,0.3),
+    -2px -2px 3px rgba(255,255,255,0.5),
+    2px -2px 2px rgba(0,0,0,0.2); /* deep engraved effect */
+  -webkit-text-stroke: 0.5px #dcd0c0;
+  transform: rotate(-1deg);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- Heading Icon ---------- */
+h1 img { 
+  width: 50px; 
+  height: 50px; 
+}
+
+/* ---------- Subheading ---------- */
+h3 {
+  font-style: italic;
+  margin-top: 10px;
+  color: rgba(247,241,227,0.85); /* slightly transparent creamy */
+  font-family: 'Georgia', serif;
+}
+
+/* ---------- Navigation Buttons ---------- */
+.nav-btn {
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 12px 28px;
+  color: #fff;
+  font-size: 1.1em;
+  margin: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* ---------- Bubble Background ---------- */
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: rise 12s infinite ease-in;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-110vh) scale(0.8); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<h1>
+  <img src="speech-bubble-icon.png" alt="Thought Icon">
+  OneWord
+</h1>
+<h3><em>Express your thought</em></h3>
+
+<a href="/register" class="nav-btn">Register</a>
+<a href="/login" class="nav-btn">Login</a>
+<a href="/post-word" class="nav-btn">Post Word</a>
+
+<script>
+for(let i=0;i<25;i++){
+  let bubble=document.createElement('div');
+  bubble.classList.add('bubble');
+  document.body.appendChild(bubble);
+  bubble.style.left=Math.random()*100+'vw';
+  bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
+  bubble.style.animationDuration=8+Math.random()*5+'s';
+  bubble.style.animationDelay=Math.random()*5+'s';
+}
+</script>
+</body>
+</html>

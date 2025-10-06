@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OneWord | Home</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #0077b6, #00b4d8);
+  color: #fff;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+h1 {
+  font-size: 4em;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 2px 2px rgba(0,0,0,0.3);
+  -webkit-text-stroke: 1px #004e89;
+  transform: rotate(-1deg);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h1 img {
+  width: 50px;
+  height: 50px;
+}
+
+h3 {
+  font-style: italic;
+  margin-top: 10px;
+  color: rgba(255,255,255,0.85);
+}
+
+.btn {
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 12px 28px;
+  color: #fff;
+  font-size: 1.1em;
+  margin: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: rise 12s infinite ease-in;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-110vh) scale(0.8); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<h1>
+  <img src="speech-bubble-icon.png" alt="Thought Icon">
+  OneWord
+</h1>
+<h3><em>Express your thought</em></h3>
+
+<a href="/register" class="btn">Register</a>
+<a href="/login" class="btn">Login</a>
+
+<script>
+for(let i=0;i<25;i++){
+  let bubble=document.createElement('div');
+  bubble.classList.add('bubble');
+  document.body.appendChild(bubble);
+  bubble.style.left=Math.random()*100+'vw';
+  bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
+  bubble.style.animationDuration=8+Math.random()*5+'s';
+  bubble.style.animationDelay=Math.random()*5+'s';
+}
+</script>
+</body>
+</html>
