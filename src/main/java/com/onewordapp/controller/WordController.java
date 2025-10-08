@@ -21,7 +21,8 @@ public class WordController {
         this.authorRepository = authorRepository;
     }
 
-    @GetMapping("/post-word")
+    // ✅ Changed route to avoid ambiguity
+    @GetMapping("/post-word/author")
     public String postPage(@RequestParam Integer authorId, Model model) {
         Author author = authorRepository.findById(authorId).orElseThrow();
         model.addAttribute("author", author.getUsername());
@@ -37,6 +38,6 @@ public class WordController {
         oneWord.setContent(word);
         oneWord.setAuthor(author);
         oneWordService.postWord(oneWord);
-        return "redirect:/post-word?authorId=" + authorId;
+        return "redirect:/post-word/author?authorId=" + authorId;
     }
 }

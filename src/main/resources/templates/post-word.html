@@ -8,28 +8,31 @@
 </head>
 <body>
 
-
-<h2><em> Your Word</em></h2>
+<h2><em>Your Word</em></h2>
 
 <form action="/post-word" method="post">
-  <textarea id="postText" name="messageText" placeholder="Write your word here..."></textarea>
+  <!-- ✅ Match controller field name -->
+  <textarea id="postText" name="word" placeholder="Write your word here..."></textarea>
+
+  <!-- ✅ Pass authorId expected by controller -->
+  <input type="hidden" name="authorId" value="{{authorId}}">
+
   <button type="submit" class="nav-btn">Post</button>
 </form>
-
 
 <a href="/" class="nav-btn">Home</a>
 <a href="/register" class="nav-btn">Register</a>
 <a href="/login" class="nav-btn">Login</a>
 
 <script>
-for(let i=0;i<25;i++){
-  let bubble=document.createElement('div');
+for (let i = 0; i < 25; i++) {
+  const bubble = document.createElement('div');
   bubble.classList.add('bubble');
   document.body.appendChild(bubble);
-  bubble.style.left=Math.random()*100+'vw';
-  bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
-  bubble.style.animationDuration=8+Math.random()*5+'s';
-  bubble.style.animationDelay=Math.random()*5+'s';
+  bubble.style.left = Math.random() * 100 + 'vw';
+  bubble.style.width = bubble.style.height = Math.random() * 40 + 10 + 'px';
+  bubble.style.animationDuration = 8 + Math.random() * 5 + 's';
+  bubble.style.animationDelay = Math.random() * 5 + 's';
 }
 </script>
 

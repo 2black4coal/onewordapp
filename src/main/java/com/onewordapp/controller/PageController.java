@@ -18,9 +18,4 @@ public class PageController {
         return "login"; // src/main/resources/templates/login.html
     }
 
-    // Post-word page
-    @GetMapping("/post-word")
-    public String postWord() {
-        return "post-word"; // src/main/resources/templates/post-word.html
-    }
 }
