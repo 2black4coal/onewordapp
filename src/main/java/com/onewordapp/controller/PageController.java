@@ -18,12 +18,6 @@ public class PageController {
         return "login"; // src/main/resources/templates/login.html
     }
 
-    // Register page
-    @GetMapping("/register")
-    public String register() {
-        return "register"; // src/main/resources/templates/register.html
-    }
-
     // Post-word page
     @GetMapping("/post-word")
     public String postWord() {
