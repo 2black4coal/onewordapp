@@ -6,18 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/") // Home / index page
+    // Home page
+    @GetMapping("/")
     public String index() {
-        return "index";
+        return "index"; // src/main/resources/templates/index.html
     }
 
-    @GetMapping("/login") // Login page
-    public String login() {
-        return "login";
+    // About page
+    @GetMapping("/about")
+    public String about() {
+        return "about"; // src/main/resources/templates/about.html
     }
 
-    @GetMapping("/post-word") // Post Word page
-    public String postWord() {
-        return "post-word";
+    // Contact page
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact"; // src/main/resources/templates/contact.html
     }
+
+    // Add more pages as needed
 }
