@@ -15,13 +15,18 @@ public class SecurityConfig {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/register", "/css/**", "/js/**").permitAll()
+                                                .requestMatchers("/", "/index", "/register", "/login", "/css/**",
+                                                                "/js/**")
+                                                .permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
                                                 .loginPage("/login")
+                                                .defaultSuccessUrl("/index", true)
                                                 .permitAll())
                                 .logout(logout -> logout
+                                                .logoutSuccessUrl("/login?logout")
                                                 .permitAll());
+
                 return http.build();
         }
 
@@ -29,4 +34,4 @@ public class SecurityConfig {
         public PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();
         }
-}
+};
