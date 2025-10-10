@@ -3,41 +3,59 @@ package com.onewordapp.controller;
 import com.onewordapp.entity.Author;
 import com.onewordapp.entity.OneWord;
 import com.onewordapp.repository.AuthorRepository;
-import com.onewordapp.service.OneWordService;
+import com.onewordapp.repository.OneWordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class WordController {
 
-    private final OneWordService oneWordService;
-    private final AuthorRepository authorRepository;
+    @Autowired
+    private OneWordRepository oneWordRepository;
 
-    public WordController(OneWordService oneWordService, AuthorRepository authorRepository) {
-        this.oneWordService = oneWordService;
-        this.authorRepository = authorRepository;
-    }
-
-    // ✅ Changed route to avoid ambiguity
-    @GetMapping("/post-word/author")
-    public String postPage(@RequestParam Integer authorId, Model model) {
-        Author author = authorRepository.findById(authorId).orElseThrow();
-        model.addAttribute("author", author.getUsername());
-        model.addAttribute("timestamp",
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(java.time.LocalDateTime.now()));
-        return "post-word";
-    }
+    @Autowired
+    private AuthorRepository authorRepository;
 
     @PostMapping("/post-word")
-    public String postWord(@RequestParam String word, @RequestParam Integer authorId) {
-        Author author = authorRepository.findById(authorId).orElseThrow();
-        OneWord oneWord = new OneWord();
-        oneWord.setContent(word);
-        oneWord.setAuthor(author);
-        oneWordService.postWord(oneWord);
-        return "redirect:/post-word/author?authorId=" + authorId;
+    public String postWord(@RequestParam("content") String content, Principal principal) {
+        Optional<Author> optionalAuthor = authorRepository.findByUsername(principal.getName());
+        if (optionalAuthor.isEmpty()) {
+            return "redirect:/login";
+        }
+
+        Author author = optionalAuthor.get();
+        OneWord word = new OneWord();
+        word.setContent(content);
+        word.setAuthor(author);
+        oneWordRepository.save(word);
+
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/words")
+    public String viewAllWords(Model model) {
+        List<OneWord> allWords = oneWordRepository.findAll();
+        model.addAttribute("allWords", allWords);
+        return "words";
+    }
+
+    @GetMapping("/author/{id}")
+    public String viewAuthorWords(@PathVariable("id") Integer id, Model model) {
+        Optional<Author> optionalAuthor = authorRepository.findById(id);
+        if (optionalAuthor.isEmpty()) {
+            return "redirect:/words";
+        }
+
+        Author author = optionalAuthor.get();
+        List<OneWord> authorWords = oneWordRepository.findAllByAuthorId(author.getId());
+        model.addAttribute("author", author);
+        model.addAttribute("authorWords", authorWords);
+        return "author";
     }
 }

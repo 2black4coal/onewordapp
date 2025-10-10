@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OneWord | Home</title>
-<link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OneWord | Home</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-<h1>
-  <img src="speech-bubble-icon.png" alt="" width="50">
-  Welcome to OneWord
-</h1>
-<h3><em>Express your thought...</em></h3>
+  <h1>
+    <img src="speech-bubble-icon.png" alt="" width="50">
+    Welcome to OneWord
+  </h1>
+  <h3><em>Express your thought...</em></h3>
 
-<a href="/register" class="nav-btn">Register</a>
-<a href="/login" class="nav-btn">Login</a>
-<a href="/post-word" class="nav-btn">Post Word</a>
+  <a href="/register" class="nav-btn">Register</a>
+  <a href="/login" class="nav-btn">Login</a>
+  <a href="/dashboard" class="nav-btn">Dashboard</a>
+  <a href="/words" class="nav-btn">Community Feed</a>
 
-<script>
-for(let i=0;i<25;i++){
-  let bubble=document.createElement('div');
-  bubble.classList.add('bubble');
-  document.body.appendChild(bubble);
-  bubble.style.left=Math.random()*100+'vw';
-  bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
-  bubble.style.animationDuration=8+Math.random()*5+'s';
-  bubble.style.animationDelay=Math.random()*5+'s';
-}
-</script>
+  <script>
+    for(let i=0;i<25;i++){
+      let bubble=document.createElement('div');
+      bubble.classList.add('bubble');
+      document.body.appendChild(bubble);
+      bubble.style.left=Math.random()*100+'vw';
+      bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
+      bubble.style.animationDuration=8+Math.random()*5+'s';
+      bubble.style.animationDelay=Math.random()*5+'s';
+    }
+  </script>
 
 </body>
 </html>

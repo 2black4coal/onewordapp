@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OneWord | Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <h2 th:text="'Welcome, ' + ${author.username}">Welcome</h2>
+
+  <!-- Post a Word Form -->
+  <form action="/post-word" method="post">
+    <textarea id="postText" name="content" placeholder="Share your word..." required></textarea>
+    <input type="submit" value="Post Word">
+  </form>
+
+  <!-- Navigation -->
+  <a href="/" class="nav-btn">Home</a>
+  <a href="/words" class="nav-btn">Community Feed</a>
+  <a href="/logout" class="nav-btn">Logout</a>
+
+  <!-- My Words -->
+  <h3>Your Words</h3>
+  <div style="max-height: 30vh; overflow-y: auto; width: 80%;">
+    <div th:each="word : ${myWords}" style="margin-bottom: 20px;">
+      <div style="
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.2);
+      ">
+        <h3 th:text="${word.content}">Word Content</h3>
+        <p style="font-style: italic;">
+          Posted on <span th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">Date</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Words -->
+  <h3>Community Words</h3>
+  <div style="max-height: 30vh; overflow-y: auto; width: 80%;">
+    <div th:each="word : ${allWords}" style="margin-bottom: 20px;">
+      <div style="
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.2);
+      ">
+        <h3 th:text="${word.content}">Word Content</h3>
+        <p style="font-style: italic;">
+          Posted by <a th:href="@{'/author/' + ${word.author.id}}" style="color: #f7f1e3; text-decoration: underline;" th:text="${word.author.username}">Author</a>
+          on <span th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">Date</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bubble Background -->
+  <script>
+    for(let i=0;i<25;i++){
+      let bubble=document.createElement('div');
+      bubble.classList.add('bubble');
+      document.body.appendChild(bubble);
+      bubble.style.left=Math.random()*100+'vw';
+      bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
+      bubble.style.animationDuration=8+Math.random()*5+'s';
+      bubble.style.animationDelay=Math.random()*5+'s';
+    }
+  </script>
+
+</body>
+</html>
