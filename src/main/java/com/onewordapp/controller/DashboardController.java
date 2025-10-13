@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class DashboardController {
@@ -24,15 +23,12 @@ public class DashboardController {
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model, Principal principal) {
-        String username = principal.getName();
+        Author author = authorRepository.findByUsername(principal.getName())
+                .orElse(null);
 
-        Optional<Author> optionalAuthor = authorRepository.findByUsername(username);
-        if (optionalAuthor.isEmpty()) {
-            // Handle case where author is not found (shouldn't happen if login is correct)
+        if (author == null) {
             return "redirect:/login";
         }
-
-        Author author = optionalAuthor.get();
 
         List<OneWord> myWords = oneWordRepository.findAllByAuthorId(author.getId());
         List<OneWord> allWords = oneWordRepository.findAll();

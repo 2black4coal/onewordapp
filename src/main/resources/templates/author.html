@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OneWord | Author Profile</title>
-  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
+          <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -19,17 +21,17 @@
         box-shadow: 0 0 10px rgba(0,0,0,0.2);
         border: 1px solid rgba(255,255,255,0.2);
       ">
-        <h3 th:text="${word.content}">Word Content</h3>
-        <p style="font-style: italic;">
-          Posted on <span th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">Date</span>
-        </p>
+        <h3 th:text="${word.content}">word content</h3>
+        <h3 style="text-align: right; margin-top: 10px;">
+  posted on <span th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">Date</span>
+</h3>
       </div>
     </div>
   </div>
 
-  <a href="/" class="nav-btn">Home</a>
-  <a href="/words" class="nav-btn">Community Feed</a>
-  <a href="/login" class="nav-btn">Login</a>
+  <a href="/" class="nav-btn">home</a>
+  <a href="/words" class="nav-btn">community feed</a>
+  <a href="/login" class="nav-btn">login</a>
 
   <script>
     for(let i=0;i<25;i++){

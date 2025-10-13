@@ -2,66 +2,76 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #0077b6, #00b4d8); /* ocean gradient */
+  background: url("../images/R.jpg") no-repeat center center fixed;
+  background-size: cover;
   color: #fff;
-  overflow: hidden;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
 }
 
-/* ---------- Super Engraved Heading ---------- */
-h1, h2, h3 {
-  font-family: 'Tempus Sans ITC', serif; /* all headings */
+body.dashboard {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+/* ---------- Engraved Headings ---------- */
+h1, h2 {
+  font-family: 'Tempus Sans ITC', serif;
   font-style: italic;
-  color: #f7f1e3; /* creamy engraved color */
-  text-shadow: 
+  color: #f7f1e3;
+  text-align: center;
+  text-shadow:
     3px 3px 5px rgba(0,0,0,0.3),
     -2px -2px 3px rgba(255,255,255,0.5),
     2px -2px 2px rgba(0,0,0,0.2);
   -webkit-text-stroke: 0.5px #dcd0c0;
   letter-spacing: 2px;
+}
+
+h3 {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 300;         /* Ensures it's not bold */
+  font-style: normal;
+  color: #f0eae0;           /* Soft, faint tone */
   text-align: center;
+  letter-spacing: 2px;
 }
-
 /* ---------- Navigation Buttons ---------- */
-.nav-btn {
+.nav-btn,
+input[type="submit"] {
+   font-family: 'Tempus Sans ITC', serif;
   font-style: italic;
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 25px;
-  padding: 12px 28px;
-  color: #fff;
-  font-size: 1.1em;
-  margin: 10px;
+  font-size: 0.8em;
+  color: lemonchiffon;
+  background: rgba(255, 255, 255, 0.05); /* Super transparent */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 8px 14px;
   text-decoration: none;
+  margin: 10px;
   transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
 }
 
-.nav-btn:hover {
-  background: rgba(255, 255, 255, 0.4);
+.nav-btn:hover,
+input[type="submit"]:hover {
+  background: rgba(255, 255, 255, 0.15); /* Gentle glow on hover */
   transform: scale(1.05);
 }
-
-/* ---------- Bubble Background ---------- */
-.bubble {
-  position: absolute;
-  bottom: -100px;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  animation: rise 12s infinite ease-in;
-}
-
-@keyframes rise {
-  0% { transform: translateY(0) scale(1); opacity: 0.6; }
-  100% { transform: translateY(-110vh) scale(0.8); opacity: 0; }
-}
-
 /* ---------- Form Styling ---------- */
 form {
   background: rgba(255, 255, 255, 0.05);
@@ -75,7 +85,20 @@ form {
   min-width: 300px;
 }
 
-input[type="text"], input[type="password"], textarea {
+body.dashboard form {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 500px;
+}
+
+/* ---------- Input & Textarea ---------- */
+input[type="text"],
+input[type="password"],
+textarea {
   padding: 10px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -83,29 +106,119 @@ input[type="text"], input[type="password"], textarea {
   color: #fff;
 }
 
-input[type="submit"] {
-  font-style: italic;
-  border-radius: 25px;
-  padding: 12px 28px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
 
-input[type="submit"]:hover {
-  background: rgba(255,255,255,0.4);
-  transform: scale(1.05);
-}
 
-/* Post-word textarea */
 textarea#postText {
-  height: 100px;       /* Adjust height as needed */
-  font-size: 1.2em;    /* Adjust font size */
+  width: 80%;
+  max-width: 500px;
+  height: 100px;
+  font-size: 1.2em;
+  font-family: 'Tempus Sans ITC', serif;
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Slightly faded border */
-  font-family: 'Tempus Sans ITC', sans-serif;  /* Match heading style if desired */
-  resize: vertical;    /* Allows user to resize vertically */
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  resize: vertical;
+
+}
+  ::placeholder {
+  color: #dcd0c0;
+; /* 🔧 Change this to your desired color */
+  font-size: small;
+  font-style: italic; /* Optional: match your engraved style */
+}
+/* ---------- Sections ---------- */
+.share-section {
+  margin-bottom: 40px;
+}
+
+
+
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+
+
+.share-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.content-section {
+  display: none;
+  margin-top: 20px;
+}
+
+.content-section.active {
+  display: block;
+}
+
+body.dashboard .section {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+body.dashboard .word {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* ---------- Lists ---------- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+ul li {
+  background: rgba(255,255,255,0.15);
+  margin: 6px 0;
+  padding: 12px;
+  border-radius: 10px;
+  color: #fdfdfd;
+  font-style: italic;
+}
+
+/* ---------- Bubble Background ---------- */
+#bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: rise 12s infinite ease-in;
+  z-index: -1;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-120vh) scale(0.8); opacity: 0; }
 }

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OneWord | Community Feed</title>
   <link rel="stylesheet" href="/css/style.css">
+          <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -21,16 +23,16 @@
       ">
         <h3 th:text="${word.content}">Word Content</h3>
         <p style="font-style: italic;">
-          Posted by <a th:href="@{'/author/' + ${word.author.id}}" style="color: #f7f1e3; text-decoration: underline;" th:text="${word.author.username}">Author</a>
+          posted by <a th:href="@{'/author/' + ${word.author.id}}" style="color: #f7f1e3; text-decoration: underline;" th:text="${word.author.username}">Author</a>
           on <span th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">Date</span>
         </p>
       </div>
     </div>
   </div>
 
-  <a href="/" class="nav-btn">Home</a>
-  <a href="/login" class="nav-btn">Login</a>
-  <a href="/register" class="nav-btn">Register</a>
+  <a href="/" class="nav-btn">home</a>
+  <a href="/login" class="nav-btn">login</a>
+  <a href="/register" class="nav-btn">register</a>
 
   <script>
     for(let i=0;i<25;i++){
