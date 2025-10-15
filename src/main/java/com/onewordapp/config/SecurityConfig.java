@@ -51,4 +51,25 @@ public class SecurityConfig {
         public PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();
         }
+
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers("/", "/index", "/login", "/register", "/dashboard",
+                                                                "/words")
+                                                .permitAll()
+                                                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // ✅
+                                                                                                                // allow
+                                                                                                                // static
+                                                                                                                // resources
+                                                .anyRequest().authenticated())
+                                .formLogin(form -> form
+                                                .loginPage("/login")
+                                                .permitAll())
+                                .logout(logout -> logout
+                                                .permitAll());
+
+                return http.build();
+        }
 }
