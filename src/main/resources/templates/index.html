@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OneWord | Home</title>
-  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Correct Thymeleaf path for CSS -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <h1>
-   
-    Welcome to OneWord
-  </h1>
+  <!-- Heading -->
+  <h1>Welcome to OneWord</h1>
   <h3><em>Express your thought...</em></h3>
 
-  <a href="/register" class="nav-btn">register</a>
-  <a href="/login" class="nav-btn">login</a>
-  <a href="/dashboard" class="nav-btn">dashboard</a>
-  <a href="/words" class="nav-btn">community feed</a>
+  <!-- Navigation -->
+  <a th:href="@{/register}" class="nav-btn">register</a>
+  <a th:href="@{/login}" class="nav-btn">login</a>
+  <a th:href="@{/dashboard}" class="nav-btn">dashboard</a>
+  <a th:href="@{/words}" class="nav-btn">community feed</a>
 
+  <!-- Bubble animation -->
   <script>
-    for(let i=0;i<25;i++){
-      let bubble=document.createElement('div');
+    for (let i = 0; i < 25; i++) {
+      let bubble = document.createElement('div');
       bubble.classList.add('bubble');
       document.body.appendChild(bubble);
-      bubble.style.left=Math.random()*100+'vw';
-      bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
-      bubble.style.animationDuration=8+Math.random()*5+'s';
-      bubble.style.animationDelay=Math.random()*5+'s';
+      bubble.style.left = Math.random() * 100 + 'vw';
+      bubble.style.width = bubble.style.height = Math.random() * 40 + 10 + 'px';
+      bubble.style.animationDuration = 8 + Math.random() * 5 + 's';
+      bubble.style.animationDelay = Math.random() * 5 + 's';
     }
   </script>
-
 </body>
 </html>

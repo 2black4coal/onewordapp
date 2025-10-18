@@ -4,44 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OneWord | Author Profile</title>
-  <link rel="stylesheet" href="/css/style.css">
-          <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
+  <!-- Correct Thymeleaf path for CSS -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <!-- Dynamic heading -->
   <h2 th:text="'Words by ' + ${author.username}">Author's Words</h2>
 
+  <!-- Scrollable container -->
   <div style="max-height: 60vh; overflow-y: auto; width: 80%;">
-    <div th:each="word : ${authorWords}" style="margin-bottom: 20px;">
-      <div style="
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        border: 1px solid rgba(255,255,255,0.2);
-      ">
-        <h3 th:text="${word.content}">word content</h3>
-        <h3 style="text-align: right; margin-top: 10px;">
-  posted on <span th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">Date</span>
-</h3>
-      </div>
+    <!-- Loop through words -->
+    <div th:each="word : ${authorWords}" class="word-box">
+      <h3 th:text="${word.content}">word content</h3>
+      <h3 style="text-align: right; margin-top: 10px;">
+        posted on <span th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">Date</span>
+      </h3>
     </div>
   </div>
 
-  <a href="/" class="nav-btn">home</a>
-  <a href="/words" class="nav-btn">community feed</a>
-  <a href="/login" class="nav-btn">login</a>
+  <!-- Navigation -->
+  <a th:href="@{/' }" class="nav-btn">home</a>
+  <a th:href="@{/words}" class="nav-btn">community feed</a>
+  <a th:href="@{/login}" class="nav-btn">login</a>
 
+  <!-- Bubble animation -->
   <script>
-    for(let i=0;i<25;i++){
-      let bubble=document.createElement('div');
+    for (let i = 0; i < 25; i++) {
+      let bubble = document.createElement('div');
       bubble.classList.add('bubble');
       document.body.appendChild(bubble);
-      bubble.style.left=Math.random()*100+'vw';
-      bubble.style.width=bubble.style.height=Math.random()*40+10+'px';
-      bubble.style.animationDuration=8+Math.random()*5+'s';
-      bubble.style.animationDelay=Math.random()*5+'s';
+      bubble.style.left = Math.random() * 100 + 'vw';
+      bubble.style.width = bubble.style.height = Math.random() * 40 + 10 + 'px';
+      bubble.style.animationDuration = 8 + Math.random() * 5 + 's';
+      bubble.style.animationDelay = Math.random() * 5 + 's';
     }
   </script>
 

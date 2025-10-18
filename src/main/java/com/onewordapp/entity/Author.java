@@ -40,4 +40,5 @@ public class Author {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

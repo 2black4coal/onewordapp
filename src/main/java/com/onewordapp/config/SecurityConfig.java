@@ -21,13 +21,10 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/", "/index", "/login", "/register", "/dashboard",
-                                                                "/words")
+                                                .requestMatchers(
+                                                                "/", "/index", "/login", "/register", "/words",
+                                                                "/about", "/contact", "/css/**", "/js/**", "/images/**")
                                                 .permitAll()
-                                                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // ✅
-                                                                                                                // allow
-                                                                                                                // static
-                                                                                                                // resources
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
                                                 .loginPage("/login")

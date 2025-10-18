@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: url#000("/images/r.jpg") no-repeat center center fixed;
+  background: url("/images/r.jpg") no-repeat center center fixed;
   background-size: cover;
   color: #fff;
   height: 100vh;
@@ -41,20 +41,21 @@ h1, h2 {
 
 h3 {
   font-family: 'Dancing Script', cursive;
-  font-weight: 300;         /* Ensures it's not bold */
+  font-weight: 300;
   font-style: normal;
-  color: #f0eae0;           /* Soft, faint tone */
+  color: #f0eae0;
   text-align: center;
   letter-spacing: 2px;
 }
+
 /* ---------- Navigation Buttons ---------- */
 .nav-btn,
 input[type="submit"] {
-   font-family: 'Tempus Sans ITC', serif;
+  font-family: 'Tempus Sans ITC', serif;
   font-style: italic;
   font-size: 0.8em;
   color: lemonchiffon;
-  background: rgba(255, 255, 255, 0.05); /* Super transparent */
+  background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   padding: 8px 14px;
@@ -69,16 +70,16 @@ input[type="submit"] {
 
 .nav-btn:hover,
 input[type="submit"]:hover {
-  background: rgba(255, 255, 255, 0.15); /* Gentle glow on hover */
+  background: rgba(255, 255, 255, 0.15);
   transform: scale(1.05);
 }
-/* ---------- Form Styling ---------- */
+
+/* ---------- Form Styling (no box) ---------- */
 form {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 25px;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -106,8 +107,6 @@ textarea {
   color: #fff;
 }
 
-
-
 textarea#postText {
   width: 80%;
   max-width: 500px;
@@ -120,20 +119,18 @@ textarea#postText {
   background: rgba(255,255,255,0.1);
   color: #fff;
   resize: vertical;
+}
 
-}
-  ::placeholder {
+::placeholder {
   color: #dcd0c0;
-; /* 🔧 Change this to your desired color */
   font-size: small;
-  font-style: italic; /* Optional: match your engraved style */
+  font-style: italic;
 }
+
 /* ---------- Sections ---------- */
 .share-section {
   margin-bottom: 40px;
 }
-
-
 
 .toggle-wrapper {
   display: flex;
@@ -141,8 +138,6 @@ textarea#postText {
   align-items: center;
   margin: 20px 0;
 }
-
-
 
 .share-form {
   display: flex;
@@ -170,7 +165,8 @@ body.dashboard .section {
   text-align: center;
 }
 
-body.dashboard .word {
+body.dashboard .word,
+.word-box {
   background: rgba(255,255,255,0.1);
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 12px;
