@@ -26,6 +26,11 @@
   <a th:href="@{/words}" class="nav-btn">community feed</a>
 
   <!-- Bubble animation -->
+
+<div th:if="${param.error}" class="error">
+    Username already exists. Please choose another.
+</div>
+
   <script>
     for (let i = 0; i < 25; i++) {
       let bubble = document.createElement('div');

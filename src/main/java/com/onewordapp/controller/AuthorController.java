@@ -23,10 +23,15 @@ public class AuthorController {
 
     @PostMapping("/register") // Process registration
     public String registerUser(@RequestParam String username, @RequestParam String password) {
+        if (authorRepository.existsByUsername(username)) {
+            return "redirect:/register?error=username-taken";
+        }
+
         Author author = new Author();
         author.setUsername(username);
         author.setPassword(passwordEncoder.encode(password));
         authorRepository.save(author);
+
         return "redirect:/login";
     }
 }
