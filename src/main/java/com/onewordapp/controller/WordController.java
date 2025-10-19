@@ -23,25 +23,6 @@ public class WordController {
     @Autowired
     private AuthorRepository authorRepository;
 
-    // Dashboard view
-    @GetMapping("/dashboard")
-    public String dashboard(Model model, Principal principal) {
-        Optional<Author> optionalAuthor = authorRepository.findByUsername(principal.getName());
-        if (optionalAuthor.isEmpty()) {
-            return "redirect:/login";
-        }
-
-        Author author = optionalAuthor.get();
-        List<OneWord> myWords = oneWordRepository.findAllByAuthorId(author.getId());
-        List<OneWord> allWords = oneWordRepository.findAll();
-
-        model.addAttribute("author", author);
-        model.addAttribute("myWords", myWords);
-        model.addAttribute("allWords", allWords);
-
-        return "dashboard";
-    }
-
     // Post a word
     @PostMapping("/post-word")
     public String postWord(@RequestParam("text") String text, Principal principal) {
@@ -65,7 +46,7 @@ public class WordController {
     public String viewAllWords(Model model) {
         List<OneWord> allWords = oneWordRepository.findAll();
         model.addAttribute("allWords", allWords);
-        return "community";
+        return "community"; // src/main/resources/templates/community.html
     }
 
     // Author profile
@@ -80,6 +61,6 @@ public class WordController {
         List<OneWord> authorWords = oneWordRepository.findAllByAuthorId(author.getId());
         model.addAttribute("author", author);
         model.addAttribute("authorWords", authorWords);
-        return "author";
+        return "author"; // src/main/resources/templates/author.html
     }
 }

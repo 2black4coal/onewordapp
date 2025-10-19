@@ -37,6 +37,6 @@ public class DashboardController {
         model.addAttribute("myWords", myWords);
         model.addAttribute("allWords", allWords);
 
-        return "dashboard";
+        return "dashboard"; // src/main/resources/templates/dashboard.html
     }
 }
