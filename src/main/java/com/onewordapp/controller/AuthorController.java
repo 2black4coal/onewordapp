@@ -16,12 +16,14 @@ public class AuthorController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/register") // Registration page
+    // Registration page
+    @GetMapping("/register")
     public String showRegisterForm() {
-        return "register";
+        return "register"; // src/main/resources/templates/register.html
     }
 
-    @PostMapping("/register") // Process registration
+    // Process registration
+    @PostMapping("/register")
     public String registerUser(@RequestParam String username, @RequestParam String password) {
         if (authorRepository.existsByUsername(username)) {
             return "redirect:/register?error=username-taken";

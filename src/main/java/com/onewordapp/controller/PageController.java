@@ -25,10 +25,10 @@ public class PageController {
     }
 
     // Register page
-    @GetMapping("/register")
-    public String register() {
-        return "register"; // src/main/resources/templates/register.html
-    }
+    // @GetMapping("/register")
+    // public String register() {
+    // return "register"; // src/main/resources/templates/register.html
+    // }
 
     // Community feed
     @GetMapping("/words")
