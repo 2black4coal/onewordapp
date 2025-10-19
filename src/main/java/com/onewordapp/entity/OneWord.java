@@ -29,7 +29,6 @@ public class OneWord {
     @PrePersist
     protected void onCreate() {
         this.timestamp = LocalDateTime.now();
-
     }
 
     public void setContent(String content) {
@@ -38,5 +37,9 @@ public class OneWord {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 }

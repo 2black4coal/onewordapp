@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OneWord | Dashboard</title>
 
-  <!-- Correct Thymeleaf path for CSS -->
+  <!-- Unified styling -->
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
@@ -15,14 +15,15 @@
   <div id="bubble-container"></div>
 
   <!-- Header -->
-  <header>
-    <h2 th:text="'Welcome, ' + ${author.username}">Welcome, Author</h2>
-    <nav>
-      <a th:href="@{/' }" class="nav-btn">home</a>
-      <a th:href="@{/post-word}" class="nav-btn">postWord</a>
-      <a th:href="@{/logout}" class="nav-btn">logout</a>
-    </nav>
-  </header>
+ <header>
+  <h2 th:text="'Welcome, ' + ${author.username}">Welcome, Author</h2>
+  <nav>
+    <a th:href="@{/home}" class="nav-btn">home</a>
+    <a th:href="@{/dashboard}" class="nav-btn">dashboard</a>
+    <a th:href="@{/words}" class="nav-btn">community feed</a>
+    <a th:href="@{/logout}" class="nav-btn">logout</a>
+  </nav>
+</header>
 
   <!-- Main Dashboard -->
   <main>
@@ -55,9 +56,7 @@
     <section id="communityFeed" class="content-section">
       <h3>community feed</h3>
       <ul>
-        <li th:each="word : ${allWords}" th:text="${word.text}">
-          community word
-        </li>
+        <li th:each="word : ${allWords}" th:text="${word.text}">community word</li>
       </ul>
     </section>
   </main>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +23,28 @@ public class WordController {
     @Autowired
     private AuthorRepository authorRepository;
 
+    // Dashboard view
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, Principal principal) {
+        Optional<Author> optionalAuthor = authorRepository.findByUsername(principal.getName());
+        if (optionalAuthor.isEmpty()) {
+            return "redirect:/login";
+        }
+
+        Author author = optionalAuthor.get();
+        List<OneWord> myWords = oneWordRepository.findAllByAuthorId(author.getId());
+        List<OneWord> allWords = oneWordRepository.findAll();
+
+        model.addAttribute("author", author);
+        model.addAttribute("myWords", myWords);
+        model.addAttribute("allWords", allWords);
+
+        return "dashboard";
+    }
+
+    // Post a word
     @PostMapping("/post-word")
-    public String postWord(@RequestParam("content") String content, Principal principal) {
+    public String postWord(@RequestParam("text") String text, Principal principal) {
         Optional<Author> optionalAuthor = authorRepository.findByUsername(principal.getName());
         if (optionalAuthor.isEmpty()) {
             return "redirect:/login";
@@ -31,20 +52,23 @@ public class WordController {
 
         Author author = optionalAuthor.get();
         OneWord word = new OneWord();
-        word.setContent(content);
+        word.setContent(text);
         word.setAuthor(author);
+        word.setTimestamp(LocalDateTime.now());
         oneWordRepository.save(word);
 
         return "redirect:/dashboard";
     }
 
+    // Community page
     @GetMapping("/words")
     public String viewAllWords(Model model) {
         List<OneWord> allWords = oneWordRepository.findAll();
         model.addAttribute("allWords", allWords);
-        return "words";
+        return "community";
     }
 
+    // Author profile
     @GetMapping("/author/{id}")
     public String viewAuthorWords(@PathVariable("id") Integer id, Model model) {
         Optional<Author> optionalAuthor = authorRepository.findById(id);
