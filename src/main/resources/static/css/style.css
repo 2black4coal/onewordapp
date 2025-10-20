@@ -196,6 +196,36 @@ ul li {
   border-radius: 10px;
   color: #fdfdfd;
   font-style: italic;
+
+
+
+}
+
+
+
+/* ---------- Word Metadata (timestamp & author) ---------- */
+ul li small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75em;
+  color: #dcd0c0;
+  font-style: normal;
+  opacity: 0.8;
+}
+
+ul li em {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8em;
+  color: #f0eae0;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+ul li:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
 }
 
 /* ---------- Bubble Background ---------- */
