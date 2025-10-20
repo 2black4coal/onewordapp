@@ -22,16 +22,15 @@ public class AuthorController {
         return "register"; // src/main/resources/templates/register.html
     }
 
-    // Process registration
+    // Process registration using @ModelAttribute
     @PostMapping("/register")
-    public String registerUser(@RequestParam String username, @RequestParam String password) {
-        if (authorRepository.existsByUsername(username)) {
+    public String register(@ModelAttribute Author author) {
+        if (authorRepository.existsByUsername(author.getUsername())) {
             return "redirect:/register?error=username-taken";
         }
 
-        Author author = new Author();
-        author.setUsername(username);
-        author.setPassword(passwordEncoder.encode(password));
+        String encodedPassword = passwordEncoder.encode(author.getPassword());
+        author.setPassword(encodedPassword);
         authorRepository.save(author);
 
         return "redirect:/login";

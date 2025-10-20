@@ -13,11 +13,11 @@
   <h2><em>Create Account</em></h2>
 
   <!-- Registration form -->
-  <form th:action="@{/register}" method="post">
-    <input type="text" name="username" placeholder="username" required />
-    <input type="password" name="password" placeholder="password" required />
-    <input type="submit" value="register" />
-  </form>
+  <form th:action="@{/register}" th:object="${author}" method="post">
+  <input type="text" th:field="*{username}" />
+  <input type="password" th:field="*{password}" />
+  <button type="submit">register</button>
+</form>
 
   <!-- Navigation -->
   <nav>

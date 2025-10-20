@@ -22,7 +22,7 @@ public class SecurityConfig {
                 http
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers(
-                                                                "/", "/index", "/login", "/register", "/words",
+                                                                "/", "/index", "/home", "/login", "/register",
                                                                 "/about", "/contact", "/css/**", "/js/**", "/images/**")
                                                 .permitAll()
                                                 .anyRequest().authenticated())
@@ -31,7 +31,8 @@ public class SecurityConfig {
                                                 .defaultSuccessUrl("/dashboard", true)
                                                 .permitAll())
                                 .logout(logout -> logout
-                                                .logoutSuccessUrl("/")
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessUrl("/login?logout")
                                                 .permitAll());
 
                 return http.build();
