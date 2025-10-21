@@ -23,24 +23,6 @@ public class WordController {
     @Autowired
     private AuthorRepository authorRepository;
 
-    // Post a word
-    @PostMapping("/post-word")
-    public String postWord(@RequestParam("text") String text, Principal principal) {
-        Optional<Author> optionalAuthor = authorRepository.findByUsername(principal.getName());
-        if (optionalAuthor.isEmpty()) {
-            return "redirect:/login";
-        }
-
-        Author author = optionalAuthor.get();
-        OneWord word = new OneWord();
-        word.setContent(text);
-        word.setAuthor(author);
-        word.setTimestamp(LocalDateTime.now());
-        oneWordRepository.save(word);
-
-        return "redirect:/dashboard";
-    }
-
     // Community page
     @GetMapping("/words")
     public String viewAllWords(Model model) {
