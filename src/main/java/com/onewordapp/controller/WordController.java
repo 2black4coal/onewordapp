@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,20 +21,15 @@ public class WordController {
     @Autowired
     private AuthorRepository authorRepository;
 
-    // Community page
-    @GetMapping("/words")
-    public String viewAllWords(Model model) {
-        List<OneWord> allWords = oneWordRepository.findAll();
-        model.addAttribute("allWords", allWords);
-        return "community"; // src/main/resources/templates/community.html
-    }
+    // ❌ Removed the /words → community.html mapping
+    // DashboardController already provides allWords for the toggle
 
-    // Author profile
+    // ✅ Author profile
     @GetMapping("/author/{id}")
     public String viewAuthorWords(@PathVariable("id") Integer id, Model model) {
         Optional<Author> optionalAuthor = authorRepository.findById(id);
         if (optionalAuthor.isEmpty()) {
-            return "redirect:/words";
+            return "redirect:/dashboard"; // safer redirect now
         }
 
         Author author = optionalAuthor.get();

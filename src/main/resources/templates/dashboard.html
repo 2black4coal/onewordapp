@@ -5,40 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OneWord | Dashboard</title>
 
-  <!-- Unified styling -->
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 
 <body class="dashboard">
-  <!-- Bubbles background -->
   <div id="bubble-container"></div>
 
-  <!-- Header -->
   <header>
     <h2 th:text="'Welcome, ' + ${author.username}">Welcome, Author</h2>
-    <nav>
-      <a th:href="@{/dashboard}" class="nav-btn">dashboard</a>
-      <a th:href="@{/words}" class="nav-btn">community feed</a>
-      <form th:action="@{/logout}" method="post" style="display:inline;">
-        <button type="submit" class="nav-btn">logout</button>
-      </form>
-    </nav>
   </header>
 
-  <!-- Main Dashboard -->
   <main>
     <!-- Share Your Word -->
     <section class="share-section">
       <h3>...share your word</h3>
       <form th:action="@{/post-word}" method="post" class="share-form">
-        <textarea
-          id="postText"
-          name="content"
-          placeholder="Type your one word..."
-          required
-        ></textarea>
+        <textarea id="postText" name="content" placeholder="Type your one word..." required></textarea>
         <input type="submit" value="post" />
+      </form>
+    </section>
+
+    <!-- Logout moved here -->
+    <section class="logout-section">
+      <form th:action="@{/logout}" method="post">
+        <button type="submit" class="nav-btn">logout</button>
       </form>
     </section>
 
@@ -59,28 +50,30 @@
       </ul>
     </section>
 
-    <!-- Community Feed -->
-    <section id="communityFeed" class="content-section">
-      <h3>community feed</h3>
-      <ul>
-        <li th:if="${#lists.isEmpty(allWords)}">No community words yet.</li>
-        <li th:each="word : ${allWords}">
-          <span th:text="${word.content}">community word</span>
-          <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
-          <em th:text="'by ' + ${word.author.username}">author</em>
-        </li>
-      </ul>
-    </section>
+<!-- Community Feed -->
+<section id="communityFeed" class="content-section">
+  <h3>community feed</h3>
+  <ul>
+    <li th:if="${#lists.isEmpty(allWords)}">No community words yet.</li>
+    <li th:each="word : ${allWords}">
+      <span th:text="${word.content}">community word</span>
+      <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
+      <!-- Link to author profile -->
+      <a th:href="@{/author/{id}(id=${word.author.id})}" 
+         class="author-link"
+         th:text="'by ' + ${word.author.username}">
+      </a>
+    </li>
+  </ul>
+</section>
   </main>
 
   <script>
-    // Toggle between "Your Words" and "Community Feed"
     function toggleSection() {
       document.getElementById("myWords").classList.toggle("active");
       document.getElementById("communityFeed").classList.toggle("active");
     }
 
-    // Bubble animation
     const bubbleContainer = document.getElementById("bubble-container");
     for (let i = 0; i < 25; i++) {
       const bubble = document.createElement("div");

@@ -280,6 +280,23 @@ ul li:hover {
   margin-bottom: 1rem;
 }
 
+
+
+/* Style for author links in community feed */
+.author-link {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #555;              /* muted gray for subtlety */
+  text-decoration: none;    /* remove underline by default */
+  margin-left: 5px;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.author-link:hover {
+  color: #222;              /* darker on hover */
+  text-decoration: underline;
+}
+
 form input[type="text"],
 form input[type="password"],
 form button.nav-btn {
