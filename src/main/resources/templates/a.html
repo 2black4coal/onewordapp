@@ -3,26 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OneWord | Home</title>
+  <title>OneWord | Register</title>
 
-  <!-- Correct Thymeleaf path for CSS -->
-  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <!-- Normal CSS link for Live Server -->
+  <link rel="stylesheet" href="../static/css/style.css" />
+
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Heading -->
-  <h1>Welcome to OneWord</h1>
-  <h3><em>Express your thought...</em></h3>
+  <h2><em>Create Account</em></h2>
+
+  <!-- Registration form -->
+ <!-- Registration form -->
+<form th:action="@{/register}" th:object="${author}" method="post">
+  <input type="text" th:field="*{username}" placeholder="username" />
+  <input type="password" th:field="*{password}" placeholder=" password" />
+  <button type="submit" class="nav-btn">Register</button>
+</form>
 
   <!-- Navigation -->
   <nav>
   <a th:href="@{/home}" class="nav-btn">home</a>
-  <a th:href="@{/register}" class="nav-btn">register</a>
+<a th:href="@{/register}" class="nav-btn">register</a>
   <a th:href="@{/login}" class="nav-btn">login</a>
   
+  <a th:href="@{/dashboard}" class="nav-btn">dashboard</a>
+  <a th:href="@{/words}" class="nav-btn">community feed</a>
 </nav>
-
   <!-- Bubble animation -->
+
+<div th:if="${param.error}" class="error">
+    Username already exists. Please choose another.
+</div>
+
   <script>
     for (let i = 0; i < 25; i++) {
       let bubble = document.createElement('div');

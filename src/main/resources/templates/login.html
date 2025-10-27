@@ -5,48 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OneWord | Login</title>
 
-  <!-- Correct Thymeleaf path for CSS -->
+  <!-- Unified styling -->
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
-<body>
-  <h2><em>Welcome Back</em></h2>
- 
 
+<body class="login-page">
+  <div id="bubble-container"></div>
 
+  <header>
+    <h2>Login to OneWord</h2>
+  </header>
 
-<div th:if="${param.error}" class="error-message">
-  Invalid username or password. Please try again.
-</div>
+  <main>
+    <!-- ✅ Logout success message -->
+    <div th:if="${param.logout}" class="info">
+      You’ve been logged out successfully.
+    </div>
 
-<div th:if="${param.logout}" class="success-message">
-  You’ve been logged out successfully.
-</div>
+    <!-- ❌ Login error message -->
+    <div th:if="${param.error}" class="error">
+      Invalid username or password. Please try again.
+    </div>
 
-<form th:action="@{/login}" method="post">
-  <input type="text" name="username" autocomplete="username" required />
-  <input type="password" name="password" autocomplete="current-password" required />
-  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-  <button type="submit">Login</button>
-</form>
-  <!-- Navigation -->
- <nav>
-  <a th:href="@{/home}" class="nav-btn">home</a>
-  <a th:href="@{/register}" class="nav-btn">register</a>
-  <a th:href="@{/dashboard}" class="nav-btn">dashboard</a>
-  <a th:href="@{/words}" class="nav-btn">community feed</a>
-</nav>
+    <!-- Login form -->
+    <form th:action="@{/login}" method="post" class="login-form">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
 
-  <!-- Bubble animation -->
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit" class="nav-btn">Login</button>
+    </form>
+  </main>
+
   <script>
-    for (let i = 0; i < 25; i++) {
-      let bubble = document.createElement('div');
-      bubble.classList.add('bubble');
-      document.body.appendChild(bubble);
-      bubble.style.left = Math.random() * 100 + 'vw';
-      bubble.style.width = bubble.style.height = Math.random() * 40 + 10 + 'px';
-      bubble.style.animationDuration = 8 + Math.random() * 5 + 's';
-      bubble.style.animationDelay = Math.random() * 5 + 's';
+    // Bubble animation
+    const bubbleContainer = document.getElementById("bubble-container");
+    for (let i = 0; i < 20; i++) {
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      bubble.style.left = `${Math.random() * 100}vw`;
+      bubble.style.animationDuration = `${8 + Math.random() * 8}s`;
+      bubble.style.opacity = 0.2 + Math.random() * 0.4;
+      bubbleContainer.appendChild(bubble);
     }
   </script>
 </body>

@@ -18,10 +18,11 @@
   <header>
     <h2 th:text="'Welcome, ' + ${author.username}">Welcome, Author</h2>
     <nav>
-      <a th:href="@{/home}" class="nav-btn">home</a>
       <a th:href="@{/dashboard}" class="nav-btn">dashboard</a>
       <a th:href="@{/words}" class="nav-btn">community feed</a>
-      <a th:href="@{/logout}" class="nav-btn">logout</a>
+      <form th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" class="nav-btn">logout</button>
+      </form>
     </nav>
   </header>
 
@@ -33,7 +34,7 @@
       <form th:action="@{/post-word}" method="post" class="share-form">
         <textarea
           id="postText"
-          name="content"   <!-- ✅ matches entity field -->
+          name="content"
           placeholder="Type your one word..."
           required
         ></textarea>

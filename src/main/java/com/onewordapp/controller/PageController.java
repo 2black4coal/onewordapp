@@ -23,4 +23,5 @@ public class PageController {
     public String authorPage() {
         return "author"; // src/main/resources/templates/author.html
     }
+
 }
