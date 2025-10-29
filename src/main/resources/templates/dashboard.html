@@ -22,20 +22,23 @@
       <h3>...share your word</h3>
       <form th:action="@{/post-word}" method="post" class="share-form">
         <textarea id="postText" name="content" placeholder="Type your one word..." required></textarea>
-        <input type="submit" value="post" />
+        <!-- Updated: unified button -->
+        <button type="submit" class="btn">Post</button>
       </form>
     </section>
 
     <!-- Logout moved here -->
     <section class="logout-section">
       <form th:action="@{/logout}" method="post">
-        <button type="submit" class="nav-btn">logout</button>
+        <!-- Updated: unified button -->
+        <button type="submit" class="btn">logout</button>
       </form>
     </section>
 
     <!-- Toggle and Feeds -->
     <div class="toggle-wrapper">
-      <button class="nav-btn" onclick="toggleSection()">toggle feed</button>
+      <!-- Updated: unified button -->
+      <button class="btn" onclick="toggleSection()">Toggle Feed</button>
     </div>
 
     <!-- Your Words -->
@@ -50,22 +53,22 @@
       </ul>
     </section>
 
-<!-- Community Feed -->
-<section id="communityFeed" class="content-section">
-  <h3>community feed</h3>
-  <ul>
-    <li th:if="${#lists.isEmpty(allWords)}">No community words yet.</li>
-    <li th:each="word : ${allWords}">
-      <span th:text="${word.content}">community word</span>
-      <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
-      <!-- Link to author profile -->
-      <a th:href="@{/author/{id}(id=${word.author.id})}" 
-         class="author-link"
-         th:text="'by ' + ${word.author.username}">
-      </a>
-    </li>
-  </ul>
-</section>
+    <!-- Community Feed -->
+    <section id="communityFeed" class="content-section">
+      <h3>community feed</h3>
+      <ul>
+        <li th:if="${#lists.isEmpty(allWords)}">No community words yet.</li>
+        <li th:each="word : ${allWords}">
+          <span th:text="${word.content}">community word</span>
+          <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
+          <!-- Link to author profile -->
+          <a th:href="@{/author/{id}(id=${word.author.id})}" 
+             class="author-link"
+             th:text="'by ' + ${word.author.username}">
+          </a>
+        </li>
+      </ul>
+    </section>
   </main>
 
   <script>

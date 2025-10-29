@@ -13,26 +13,26 @@
   <h2><em>Create Account</em></h2>
 
   <!-- Registration form -->
-  <form th:action="@{/register}" th:object="${author}" method="post">
-  <input type="text" th:field="*{username}" />
-  <input type="password" th:field="*{password}" />
-  <button type="submit">register</button>
-</form>
+  <form th:action="@{/register}" th:object="${author}" method="post" class="register-form">
+    <input type="text" th:field="*{username}" placeholder="Choose a username" required />
+    <input type="password" th:field="*{password}" placeholder="Create a password" required />
+    <input type="password" name="confirmPassword" placeholder="Confirm password" required />
+    <button type="submit" class="btn">register</button>
+  </form>
 
   <!-- Navigation -->
   <nav>
-  <a th:href="@{/home}" class="nav-btn">home</a>
-<a th:href="@{/register}" class="nav-btn">register</a>
-  <a th:href="@{/login}" class="nav-btn">login</a>
-  
-  
-</nav>
-  <!-- Bubble animation -->
+    <a th:href="@{/home}" class="btn">home</a>
+    <a th:href="@{/register}" class="btn">register</a>
+    <a th:href="@{/login}" class="btn">login</a>
+  </nav>
 
-<div th:if="${param.error}" class="error">
+  <!-- Error message -->
+  <div th:if="${param.error}" class="error">
     Username already exists. Please choose another.
-</div>
+  </div>
 
+  <!-- Bubble animation -->
   <script>
     for (let i = 0; i < 25; i++) {
       let bubble = document.createElement('div');

@@ -30,13 +30,14 @@
 
     <!-- Login form -->
     <form th:action="@{/login}" method="post" class="login-form">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
+     
+      <input type="text" id="username" name="username" placeholder="Enter username" required />
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
+     
+      <input type="password" id="password" name="password" placeholder="Enter password" required />
 
-      <button type="submit" class="nav-btn">Login</button>
+      <!-- Updated: unified button class -->
+      <button type="submit" class="btn">login</button>
     </form>
   </main>
 
