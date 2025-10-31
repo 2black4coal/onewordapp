@@ -203,10 +203,13 @@ body.dashboard .word,
 }
 
 
-.success-message {
+/* Unified feedback style for success/info messages */
+.success-message,
+.info {
   color: green;
-  margin-bottom: 1em;
   font-weight: bold;
+  font-style: italic;
+  margin-bottom: 1rem; /* consistent spacing */
 }
 
 /* ---------- Lists ---------- */
@@ -237,7 +240,7 @@ ul li small {
   margin-top: 4px;
   font-size: 0.75em;
   color: #dcd0c0;
-  font-style: normal;
+  font-style: italic;
   opacity: 0.8;
 }
 
@@ -285,11 +288,7 @@ ul li:hover {
 }
 
 
-.info {
-  color: green;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
+
 
 
 
@@ -297,6 +296,7 @@ ul li:hover {
   color: #ff6b6b;   /* soft red for visibility */
   font-weight: bold;
   margin-bottom: 1rem;
+  font-style: italic;
 }
 
 
@@ -321,4 +321,27 @@ form input[type="password"],
 form button.nav-btn {
   width: 100%;
   box-sizing: border-box;
+}
+
+/* Dashboard-specific button sizing */
+body.dashboard form .btn {
+  width: auto;              /* shrink to fit text */
+  padding: 8px 16px;        /* same feel as toggle */
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Logout form alignment inside dashboard */
+body.dashboard .logout-section form {
+  width: auto;              /* don’t stretch the form */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.author-words-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }
