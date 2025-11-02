@@ -346,7 +346,7 @@ body.dashboard form .btn {
 ul li .author-link {
   font-style: italic;
   font-size: 0.9em;
-  color: #777 !important;    /* dark gray, not full black */
+  color: #444 !important;    /* dark gray, not full black */
   text-decoration: none;
   margin-left: 5px;
   transition: color 0.2s ease, text-decoration 0.2s ease;
