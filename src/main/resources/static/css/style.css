@@ -345,3 +345,36 @@ body.dashboard .logout-section form {
   gap: 10px;
   margin-top: 20px;
 }
+
+
+/* ---------- Author Page Specific ---------- */
+body.author .word-box {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+body.author .word-box p {
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+body.author .word-box small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75em;
+  color: #dcd0c0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Author page nav layout */
+.author-words-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}

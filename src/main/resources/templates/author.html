@@ -6,7 +6,7 @@
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
-<body class="dashboard">
+<body class="author">
   <!-- Bubble background -->
   <div id="bubble-container"></div>
 
@@ -14,21 +14,22 @@
     <h2 th:text="'Words by ' + ${author.username}">Author's Words</h2>
   </header>
 
- <main>
-  <div class="author-words">
-    <div th:each="word : ${authorWords}" class="word-box">
-      <p th:text="${word.content}">word content</p>
-      <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
+  <main>
+    <div class="author-words">
+      <div th:each="word : ${authorWords}" class="word-box">
+        <p th:text="${word.content}">word content</p>
+        <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
+      </div>
     </div>
-  </div>
 
-  <nav class="author-words-nav">
-    <a th:href="@{/dashboard}" class="btn">back to dashboard</a>
-    <form th:action="@{/logout}" method="post">
-      <button type="submit" class="btn">logout</button>
-    </form>
-  </nav>
-</main>
+    <!-- Navigation -->
+    <nav class="author-words-nav">
+      <a th:href="@{/dashboard}" class="btn">back to dashboard</a>
+      <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn">logout</button>
+      </form>
+    </nav>
+  </main>
 
   <script>
     // Bubble animation (same as dashboard)
