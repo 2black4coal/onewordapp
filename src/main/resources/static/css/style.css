@@ -29,7 +29,7 @@ body.dashboard {
 h1, h2 {
   font-family: 'Tempus Sans ITC', serif;
   font-style: italic;
-  color: #f7f1e3;
+  color: #d5cdb9;
   text-align: center;
   text-shadow:
     3px 3px 5px rgba(0,0,0,0.3),
@@ -51,6 +51,8 @@ h3 {
 /* ---------- Unified Button Style ---------- */
 .btn {
   font-family: 'Tempus Sans ITC', serif;
+   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
   font-style: italic;
   font-size: 0.8em;
   color: lemonchiffon;
@@ -70,6 +72,8 @@ h3 {
 .btn:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+
 }
 
 nav {
@@ -224,6 +228,19 @@ body.dashboard .section {
   font-style: italic;
 }
 
+/* ---------- Unified Card Hover & Transition ---------- */
+.word-box,
+ul li {
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.word-box:hover,
+ul li:hover {
+  transform: scale(1.02);
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
 /* Unified feedback style for success/info messages */
 .success-message,
 .info {
@@ -248,6 +265,7 @@ ul li {
   border-radius: 10px;
   color: #fdfdfd;
   font-style: italic;
+  transition: all 0.2s ease-in-out;
 }
 
 ul li small {
@@ -268,11 +286,6 @@ ul li em {
   opacity: 0.9;
 }
 
-ul li:hover {
-  background: rgba(255,255,255,0.25);
-  transform: scale(1.02);
-  transition: all 0.2s ease-in-out;
-}
 
 /* ---------- Bubble Background ---------- */
 #bubble-container {
@@ -310,20 +323,7 @@ ul li:hover {
   font-style: italic;
 }
 
-/* Style for author links in community feed */
-.author-link {
-  font-style: italic;
-  font-size: 0.9em;
-  color: #444;             /* matches your subtle timestamp color */
-  text-decoration: none;      /* remove underline by default */
-  margin-left: 5px;
-  transition: color 0.2s ease, text-decoration 0.2s ease;
-}
 
-.author-link:hover {
-  color: lemonchiffon;        /* highlight on hover to match buttons */
-  text-decoration: underline; /* subtle underline for clarity */
-}
 /* Dashboard-specific button sizing */
 body.dashboard form .btn {
   width: auto;              /* shrink to fit text */
@@ -346,13 +346,13 @@ body.dashboard form .btn {
 ul li .author-link {
   font-style: italic;
   font-size: 0.9em;
-  color: #444 !important;    /* dark gray, not full black */
+  color: #444 !important;       /* dark gray, valid hex */
   text-decoration: none;
   margin-left: 5px;
-  transition: color 0.2s ease, text-decoration 0.2s ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 ul li .author-link:hover {
-  color: lemonchiffon;       /* highlight on hover */
+  color: lemonchiffon !important;  /* highlight on hover */
   text-decoration: underline;
 }

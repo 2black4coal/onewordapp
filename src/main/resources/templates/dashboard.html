@@ -41,17 +41,20 @@
       <button class="btn" onclick="toggleSection()">Toggle Feed</button>
     </div>
 
-    <!-- Your Words -->
     <section id="myWords" class="content-section active">
-      <h3>your words</h3>
-      <ul>
-        <li th:if="${#lists.isEmpty(myWords)}">No words yet.</li>
-        <li th:each="word : ${myWords}">
-          <span th:text="${word.content}">sample word</span>
-          <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
-        </li>
-      </ul>
-    </section>
+  <h3>your words</h3>
+  <ul>
+    <li th:if="${#lists.isEmpty(myWords)}">No word yet.</li>
+    <li th:each="word : ${myWords}">
+      <span th:text="${word.content}">sample word</span>
+      <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
+      <a th:href="@{/author/{id}(id=${word.author.id})}"
+         class="author-link"
+         th:text="'by ' + ${word.author.username}">
+      </a>
+    </li>
+  </ul>
+</section>
 
     <!-- Community Feed -->
     <section id="communityFeed" class="content-section">
