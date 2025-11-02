@@ -314,7 +314,7 @@ ul li:hover {
 .author-link {
   font-style: italic;
   font-size: 0.9em;
-  color: #dcd0c0;             /* matches your subtle timestamp color */
+  color: #444;             /* matches your subtle timestamp color */
   text-decoration: none;      /* remove underline by default */
   margin-left: 5px;
   transition: color 0.2s ease, text-decoration 0.2s ease;
@@ -323,4 +323,36 @@ ul li:hover {
 .author-link:hover {
   color: lemonchiffon;        /* highlight on hover to match buttons */
   text-decoration: underline; /* subtle underline for clarity */
+}
+/* Dashboard-specific button sizing */
+body.dashboard form .btn {
+  width: auto;              /* shrink to fit text */
+  padding: 8px 16px;        /* balanced padding */
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* ---------- Dashboard Button Fix ---------- */
+/* Override the global form .btn { width:100% } */
+body.dashboard form .btn {
+  width: auto !important;    /* shrink to fit text */
+  padding: 8px 16px;         /* balanced padding */
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* ---------- Author Link Color Fix ---------- */
+/* Stronger selector so it overrides ul li em */
+ul li .author-link {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #777 !important;    /* dark gray, not full black */
+  text-decoration: none;
+  margin-left: 5px;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+ul li .author-link:hover {
+  color: lemonchiffon;       /* highlight on hover */
+  text-decoration: underline;
 }
