@@ -15,20 +15,22 @@
   </header>
 
   <main>
-    <div class="author-words">
-      <div th:each="word : ${authorWords}" class="word-box">
-        <p th:text="${word.content}">word content</p>
-        <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
-      </div>
+   <div class="author-words">
+  <div th:each="word : ${authorWords}" class="word-box">
+    <p th:text="${word.content}">word content</p>
+    <div class="meta">
+      <small th:text="${#temporals.format(word.timestamp, 'MMM dd, yyyy HH:mm')}">timestamp</small>
+      <em th:text="${word.author.username}">author</em>
     </div>
+  </div>
+</div>
 
-    <!-- Navigation -->
-    <nav class="author-words-nav">
-      <a th:href="@{/dashboard}" class="btn">back to dashboard</a>
-      <form th:action="@{/logout}" method="post">
-        <button type="submit" class="btn">logout</button>
-      </form>
-    </nav>
+<nav class="author-words-nav">
+  <a th:href="@{/dashboard}" class="btn">back to dashboard</a>
+  <form th:action="@{/logout}" method="post">
+    <button type="submit" class="btn">logout</button>
+  </form>
+</nav>
   </main>
 
   <script>

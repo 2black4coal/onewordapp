@@ -92,8 +92,6 @@ form {
   min-width: 300px;
 }
 
-
-
 form .btn {
   width: 100%;
   box-sizing: border-box;
@@ -107,12 +105,6 @@ form .btn {
   max-width: 500px;
   margin: 0 auto;
 }
-
-
-
-
-
-
 
 body.dashboard form {
   background: none;
@@ -193,15 +185,44 @@ body.dashboard .section {
   text-align: center;
 }
 
-body.dashboard .word,
+/* ---------- Unified Post Card (Dashboard + Author) ---------- */
 .word-box {
+  max-width: 600px;          /* ✅ cap width so card never blows out */
+  width: 90%;                /* responsive on smaller screens */
+  margin: 20px auto;         /* center horizontally with spacing */
   background: rgba(255,255,255,0.1);
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+  word-wrap: break-word;     /* wrap long words */
+  overflow-wrap: break-word; /* modern browsers */
+  text-align: left;
 }
 
+.word-box p {
+  font-style: italic;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.word-box .meta {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 12px;
+  padding-top: 6px;
+  font-size: 0.8em;
+  color: #dcd0c0;
+  font-style: italic;
+  text-align: right;   /* align timestamp/author neatly */
+  opacity: 0.85;
+}
+
+.word-box .meta em {
+  margin-left: 10px;
+  color: #f0eae0;
+  font-size: 0.8em;
+  font-style: italic;
+}
 
 /* Unified feedback style for success/info messages */
 .success-message,
@@ -227,14 +248,8 @@ ul li {
   border-radius: 10px;
   color: #fdfdfd;
   font-style: italic;
-
-
-
 }
 
-
-
-/* ---------- Word Metadata (timestamp & author) ---------- */
 ul li small {
   display: block;
   margin-top: 4px;
@@ -287,11 +302,7 @@ ul li:hover {
   100% { transform: translateY(-120vh) scale(0.8); opacity: 0; }
 }
 
-
-
-
-
-
+/* ---------- Errors ---------- */
 .error {
   color: #ff6b6b;   /* soft red for visibility */
   font-weight: bold;
@@ -299,82 +310,17 @@ ul li:hover {
   font-style: italic;
 }
 
-
-
 /* Style for author links in community feed */
 .author-link {
   font-style: italic;
   font-size: 0.9em;
-  color: #555;              /* muted gray for subtlety */
-  text-decoration: none;    /* remove underline by default */
+  color: #dcd0c0;             /* matches your subtle timestamp color */
+  text-decoration: none;      /* remove underline by default */
   margin-left: 5px;
   transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
 .author-link:hover {
-  color: #222;              /* darker on hover */
-  text-decoration: underline;
-}
-
-form input[type="text"],
-form input[type="password"],
-form button.nav-btn {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Dashboard-specific button sizing */
-body.dashboard form .btn {
-  width: auto;              /* shrink to fit text */
-  padding: 8px 16px;        /* same feel as toggle */
-  display: inline-block;
-  margin: 0 auto;
-}
-
-/* Logout form alignment inside dashboard */
-body.dashboard .logout-section form {
-  width: auto;              /* don’t stretch the form */
-  margin: 0 auto;
-  text-align: center;
-}
-
-.author-words-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-
-/* ---------- Author Page Specific ---------- */
-body.author .word-box {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 15px;
-}
-
-body.author .word-box p {
-  font-style: italic;
-  margin-bottom: 6px;
-}
-
-body.author .word-box small {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.75em;
-  color: #dcd0c0;
-  font-style: italic;
-  opacity: 0.8;
-}
-
-/* Author page nav layout */
-.author-words-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
+  color: lemonchiffon;        /* highlight on hover to match buttons */
+  text-decoration: underline; /* subtle underline for clarity */
 }
